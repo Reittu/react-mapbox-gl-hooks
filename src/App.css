@@ -1,27 +1,50 @@
 .App {
-  text-align: center
+  text-align: center;
+  font-family: Montserrat
 }
-.stat-box, .goto-box {
-  background-color: rgba(25,25,25,.75);
-  color: #fff;
-  padding: .5rem 1rem;
+.extras-toggle-button {
+  position: absolute;
+  top: 0;
+  right: 0;
   margin: 1rem;
   z-index: 1;
+  padding: .5rem;
+}
+.goto-box,
+.stat-box {
+  background-color: rgba(25,25,25,.75);
+  color: #fff;
+  padding: .5rem;
+  z-index: 1;
+  position: absolute;
+  border-radius: 1rem
+}
+.stat-box {
+  margin: 1rem;
   left: 0;
   top: 0;
-  position: absolute;
-  border-radius: 1rem;
   font-weight: 700
 }
-
 .goto-box {
-  top: unset;
   bottom: 2rem;
   left: 50%;
-  margin: 0;
   transform: translateX(-50%);
+  width: 200px
 }
-.goto-box * {
-  width: 5rem;
-  display: block
+.goto-box input {
+  width: 100%;
+  display: block;
+  font-family: Montserrat
+}
+input[type=submit], .extras-toggle-button {
+  background-color: purple;
+  color: #fff;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer
+}
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
 }

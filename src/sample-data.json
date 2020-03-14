@@ -1,0 +1,20 @@
+[
+  {
+    "latitude": 60.735,
+    "longitude": 24.786,
+    "text": "I live around here!",
+    "description": "Linnunradankatu, 11130 Riihimäki"
+  },
+  {
+    "latitude": 37.422,
+    "longitude": -122.084,
+    "text": "Googleplex",
+    "description": "Just some filler places... Google HQ"
+  },
+  {
+    "latitude": 37.496867,
+    "longitude": 127.026635,
+    "text": "Samsung HQ",
+    "description": "Just some filler places... Samsung HQ"
+  }
+]
