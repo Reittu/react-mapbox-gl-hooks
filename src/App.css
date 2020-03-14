@@ -1,0 +1,27 @@
+.App {
+  text-align: center
+}
+.stat-box, .goto-box {
+  background-color: rgba(25,25,25,.75);
+  color: #fff;
+  padding: .5rem 1rem;
+  margin: 1rem;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  position: absolute;
+  border-radius: 1rem;
+  font-weight: 700
+}
+
+.goto-box {
+  top: unset;
+  bottom: 2rem;
+  left: 50%;
+  margin: 0;
+  transform: translateX(-50%);
+}
+.goto-box * {
+  width: 5rem;
+  display: block
+}
