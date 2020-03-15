@@ -2,7 +2,13 @@
 
 An example of Mapbox GL using the react-map-gl wrapper library. Has markers and some controls.
 
-# Setup
+## Live Demo
+
+[Demo](https://o2fmh.csb.app/)
+
+[Editor](https://codesandbox.io/s/react-mapbox-gl-o2fmh?fontsize=14&hidenavigation=1&theme=dark)
+
+## Setup
 
 ```
 npm install
