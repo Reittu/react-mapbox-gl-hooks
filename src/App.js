@@ -10,8 +10,8 @@ const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 
 function App() {
   const [viewport, setViewport] = useState({
-    latitude: 62.1,
     longitude: 26.2,
+    latitude: 62.1,
     zoom: 4.9,
     bearing: 0,
     pitch: 0
@@ -65,13 +65,13 @@ function App() {
         onViewportChange={setViewport}
         mapboxApiAccessToken={MAPBOX_TOKEN}
       >
-        {MARKERDATA.map((p, i) => (
+        {MARKERDATA.features.map((p, i) => (
           <CustomMarker
             key={"mark-" + i}
-            latitude={p.latitude}
-            longitude={p.longitude}
-            text={p.text}
-            description={p.description}
+            longitude={p.geometry.coordinates[0]}
+            latitude={p.geometry.coordinates[1]}
+            text={p.properties.text}
+            description={p.properties.description}
             color="purple"
             offsetTop={-24}
             offsetLeft={-12}

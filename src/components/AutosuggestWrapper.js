@@ -1,65 +1,56 @@
-import React, { useState } from 'react';
-import Autosuggest from 'react-autosuggest';
+import React, { useState, useEffect } from 'react';
+import { TextField } from '@material-ui/core';
+import { Autocomplete } from '@material-ui/lab';
 
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
+let debounceTimer;
 
 const getSuggestions = async value => {
     const inputValue = value.trim().toLowerCase();
-    const inputLength = inputValue.length;
-    return await inputLength < 2 ? [] : queryPlaces(value);
+    return await inputValue.length < 2 ? [] : queryPlaces(value);
 };
-
-const getSuggestionValue = suggestion => suggestion.place_name;
 
 async function queryPlaces(query) {
     const response = await fetch('https://api.mapbox.com/geocoding/v5/mapbox.places/' + query + '.json?access_token=' + MAPBOX_TOKEN);
     const data = await response.json();
-    return data.features ? data.features : [];
+    return data.features || [];
 }
 
 function AutosuggestWrapper(props) {
-    const {viewport, setViewport} = props;
+    const { viewport, setViewport } = props;
     const [suggestions, setSuggestions] = useState([]);
     const [value, setValue] = useState('');
-
-    const renderSuggestion = suggestion => (
-        <div onClick={() => {
-            setViewport({
-                ...viewport,
-                latitude: Number(suggestion.center[1]),
-                longitude: Number(suggestion.center[0])
-            })
-        }}>
-            {suggestion.place_name}
-        </div>
-    );
-
-    const onChange = (event, { newValue }) => {
-        setValue(newValue);
-    };
-
-    const onSuggestionsFetchRequested = async ({ value }) => {
-        setSuggestions(await getSuggestions(value));
-    };
-
-    const onSuggestionsClearRequested = () => {
-        setSuggestions([]);
-    };
-
-    const inputProps = {
-        placeholder: 'Search for a location...',
-        value,
-        onChange
-    };
+    useEffect(() => {
+        async function asyncSet() {
+            setSuggestions(await getSuggestions(value));
+        }
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(asyncSet, 300);
+    }, [value]);
 
     return (
-        <Autosuggest
-            suggestions={suggestions}
-            onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-            onSuggestionsClearRequested={onSuggestionsClearRequested}
-            getSuggestionValue={getSuggestionValue}
-            renderSuggestion={renderSuggestion}
-            inputProps={inputProps}
+        <Autocomplete
+            freeSolo
+            onInputChange={(event, newValue) => setValue(newValue)}
+            options={suggestions}
+            renderInput={params => (
+                <TextField {...params} label="Search for a location..." margin="normal" variant="outlined" />
+            )}
+            getOptionLabel={option => option.place_name}
+            renderOption={option => {
+                return (
+                    <div onClick={() => {
+                        setViewport({
+                            ...viewport,
+                            longitude: Number(option.center[0]),
+                            latitude: Number(option.center[1])
+                        })
+                    }}>
+                        {option.place_name}
+                    </div>
+                );
+            }}
+
         />
     );
 }
