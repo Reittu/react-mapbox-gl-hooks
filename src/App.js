@@ -67,8 +67,8 @@ function App() {
             text={p.text}
             description={p.description}
             color="purple"
-            offsetTop={0}
-            offsetLeft={0}
+            offsetTop={-24}
+            offsetLeft={-12}
           />
         ))}
       </MapGL>
