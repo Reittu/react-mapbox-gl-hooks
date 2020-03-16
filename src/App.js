@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import './App.css';
 import MapGL from 'react-map-gl';
 import CustomMarker from './components/CustomMarker';
+import AutosuggestWrapper from './components/AutosuggestWrapper';
 
 import MARKERDATA from './sample-data.json';
 
@@ -30,6 +31,11 @@ function App() {
 
   return (
     <div className="App">
+
+      <div className="search-box">
+        <AutosuggestWrapper viewport={viewport} setViewport={setViewport} />
+      </div>
+
       <button className="extras-toggle-button" onClick={() => setShowLayers(!showLayers)}>{showLayers ? "Hide extras" : "Show extras"}</button>
 
       {/* Extra layers: Stats & GoTo */}
@@ -72,7 +78,7 @@ function App() {
           />
         ))}
       </MapGL>
-      
+
     </div>
   );
 }
