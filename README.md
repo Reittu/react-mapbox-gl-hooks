@@ -4,7 +4,7 @@ An example of Mapbox GL using the react-map-gl wrapper library. Has markers and 
 
 ## Live Demo
 
-[Demo](https://o2fmh.csb.app/)
+[Demo](https://o2fmh.codesandbox.io/)
 
 [Editor](https://codesandbox.io/s/react-mapbox-gl-o2fmh?fontsize=14&hidenavigation=1&theme=dark)
 
